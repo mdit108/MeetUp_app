@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login">
-
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/bar_layout"/>
     <TextView
         android:id="@+id/textView4"
         style="@style/screenhead"
