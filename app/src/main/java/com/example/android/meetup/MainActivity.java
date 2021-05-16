@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.android.meetup.Fragments.ChatsFragment;
+import com.example.android.meetup.Fragments.ProfileFragment;
 import com.example.android.meetup.Fragments.UsersFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //
                 viewPagerAdapter.addFragment(new UsersFragment(), "Users");
-//                viewPagerAdapter.addFragment(new ProfileFragment(), "Profile");
+                viewPagerAdapter.addFragment(new ProfileFragment(), "Profile");
 //
                 viewPager.setAdapter(viewPagerAdapter);
 //
