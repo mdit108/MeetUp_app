@@ -54,7 +54,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
         User user = mUsers.get(position);
         holder.username.setText(user.getUsername());
-        holder.percent.setText(matchpercent.get(position)+"% Match");
+        holder.percent.setText(matchpercent.get(position)+"% Match!");
         Log.d("TAG",matchpercent.toString());
         //holder.percent.setText(matchpercent.get(position));
         if (user.getImageURL().equals("default")){
