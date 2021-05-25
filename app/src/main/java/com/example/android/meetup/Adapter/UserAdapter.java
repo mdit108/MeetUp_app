@@ -33,14 +33,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
 //    private boolean ischat;
     private List<Integer>matchpercent;
+    private boolean chatormatch;
 
     String theLastMessage;
 
-    public UserAdapter(Context mContext, List<User> mUsers/*boolean ischat*/,List<Integer>matchpercent){
+    public UserAdapter(Context mContext, List<User> mUsers/*boolean ischat*/,List<Integer>matchpercent,boolean chatormatch){
         this.mUsers = mUsers;
         this.mContext = mContext;
 //        this.ischat = ischat;
         this.matchpercent=matchpercent;
+        this.chatormatch=chatormatch;
     }
 
     @NonNull
@@ -56,6 +58,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         User user = mUsers.get(position);
         holder.username.setText(user.getUsername());
         holder.percent.setText(matchpercent.get(position)+"% Match!");
+        if (!chatormatch) {
+            holder.percent.setVisibility(View.GONE);
+        }
         Log.d("TAG",matchpercent.toString());
         //holder.percent.setText(matchpercent.get(position));
         if (user.getImageURL().equals("default")){
