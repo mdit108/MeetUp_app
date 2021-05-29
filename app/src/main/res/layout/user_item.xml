@@ -7,7 +7,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/profile_image"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@drawable/avtr"/>
 
     <TextView
         android:id="@+id/username"
@@ -22,13 +22,13 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="85dp"
+        android:layout_width="151dp"
         android:layout_height="45dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="257dp"
-        android:layout_marginLeft="257dp"
+        android:layout_marginStart="191dp"
+        android:layout_marginLeft="191dp"
         android:layout_toEndOf="@+id/profile_image"
         android:layout_toRightOf="@+id/profile_image"
         android:gravity="center_horizontal|center_vertical"

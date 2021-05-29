@@ -1,15 +1,14 @@
 package com.example.android.meetup.Fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.android.meetup.Adapter.UserAdapter;
 import com.example.android.meetup.Model.Chat;
@@ -87,7 +86,8 @@ public class ChatsFragment extends Fragment {
                     for (String id:usersList){
                         if (user.getId().equals(id)){
                             if (mUsers.size()!=0){
-                                for (User user1:mUsers){
+                                for (int i=0; i<mUsers.size();i++){
+                                    User user1=mUsers.get(i);
                                     if (!user.getId().equals(user1.getId())){
                                         mUsers.add(user);
                                     }

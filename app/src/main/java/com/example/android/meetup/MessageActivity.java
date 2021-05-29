@@ -1,12 +1,7 @@
 package com.example.android.meetup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +9,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.android.meetup.Adapter.MessageAdapter;
@@ -42,6 +42,7 @@ public class MessageActivity extends AppCompatActivity {
     DatabaseReference reference;
     Intent intent;
     ImageButton btn_send;
+    String userid;
     EditText text_send;
     MessageAdapter messageAdapter;
     List<Chat> mchat;
@@ -72,7 +73,7 @@ public class MessageActivity extends AppCompatActivity {
         btn_send=findViewById(R.id.btn_send);
         text_send=findViewById(R.id.text_send);
         intent=getIntent();
-        final String userid=intent.getStringExtra("userid");
+        userid=intent.getStringExtra("userid");
         fUser= FirebaseAuth.getInstance().getCurrentUser();
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,9 +118,52 @@ public class MessageActivity extends AppCompatActivity {
         hashMap.put("receiver",receiver);
         hashMap.put("message",message);
         reference.child("Chats").push().setValue(hashMap);
+        final DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chatlist")
+                .child(fUser.getUid())
+                .child(userid);
+
+        chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()){
+                    chatRef.child("id").setValue(userid);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        final DatabaseReference chatRefReceiver = FirebaseDatabase.getInstance().getReference("Chatlist")
+                .child(userid)
+                .child(fUser.getUid());
+        chatRefReceiver.child("id").setValue(fUser.getUid());
+
+        final String msg = message;
+
+//        reference = FirebaseDatabase.getInstance().getReference("Users").child(fUser.getUid());
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                User user = dataSnapshot.getValue(User.class);
+////                if (notify) {
+////                    sendNotifiaction(receiver, user.getUsername(), msg);
+////                }
+////                notify = false;
+////            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 
-    private void readMessages(String myid,String userid,String imageurl){
+
+
+    private void readMessages(final String myid,final String userid,final String imageurl){
         mchat=new ArrayList<>();
         reference=FirebaseDatabase.getInstance().getReference("Chats");
         reference.addValueEventListener(new ValueEventListener() {
@@ -142,4 +186,32 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
     }
+    private void currentUser(String userid){
+        SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
+        editor.putString("currentuser", userid);
+        editor.apply();
+    }
+    private void status(String status){
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(fUser.getUid());
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("status", status);
+
+        reference.updateChildren(hashMap);
+    }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        status("online");
+//        currentUser(userid);
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        reference.removeEventListener(seenListener);
+//        status("offline");
+//        currentUser("none");
+//    }
 }

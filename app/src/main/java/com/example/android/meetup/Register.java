@@ -1,6 +1,7 @@
 package com.example.android.meetup;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -36,6 +37,7 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mFullname=findViewById(R.id.fullname);
         mEmail=findViewById(R.id.editTextTextEmailAddress);
         mPassword=findViewById(R.id.editTextTextPassword);

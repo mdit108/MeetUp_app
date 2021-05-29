@@ -5,16 +5,15 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.android.meetup.Model.User;
@@ -75,7 +74,7 @@ public class ProfileFragment extends Fragment {
                 username.setText(user.getUsername());
                 interests.setText(user.getInterests().toString());
                 if (user.getImageURL().equals("default")){
-                    image_profile.setImageResource(R.mipmap.ic_launcher);
+                    image_profile.setImageResource(R.drawable.avtr);
                 }
                 else{
                     Glide.with(getContext()).load(user.getImageURL()).into(image_profile);

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
+    android:theme="@style/Theme.MeetUp"
     tools:context=".Fragments.ProfileFragment">
 
     <TextView
@@ -37,7 +38,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Profile"
-                android:textColor="@color/design_default_color_primary_dark"
                 android:textStyle="bold" />
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -57,7 +57,6 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="20dp"
                 android:text="username"
-                android:textColor="@color/design_default_color_primary_dark"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
