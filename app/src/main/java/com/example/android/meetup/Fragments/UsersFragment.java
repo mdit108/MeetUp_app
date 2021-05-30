@@ -74,6 +74,10 @@ public class UsersFragment extends Fragment {
         return view;
     }
     private void searchUsers(String s){
+        if (s.equals("")){
+            readUsers();
+        }
+        else{
         final User user3=new User();
         FirebaseUser fUser=FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Users");
@@ -131,7 +135,7 @@ public class UsersFragment extends Fragment {
 
             }
         });
-    }
+    }}
 
 
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e6e6e6"
+    android:background="@drawable/bgofchats"
     tools:context=".MessageActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -43,32 +43,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom"
-        android:layout_below="@id/toolbar" />
+        android:layout_below="@id/toolbar"
+         />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:padding="5dp"
         android:id="@+id/bottom"
-        android:background="#fff"
         android:layout_alignParentBottom="true"
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/text_send"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/text_send"
-            android:background="@android:color/transparent"
-            android:hint="Type a message..."
+            android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/btn_send"
-            android:layout_centerVertical="true"/>
+            android:background="@drawable/curvedtext"
+            android:hint="Type a message..."
+            android:padding="10dp" />
 
         <ImageButton
-            android:layout_width="40dp"
-            android:background="@drawable/ic_action_name"
-            android:layout_height="40dp"
             android:id="@+id/btn_send"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="-2dp"
+            android:layout_marginRight="-2dp"
+            android:background="@drawable/ic_action_name" />
 
     </RelativeLayout>
 

@@ -34,6 +34,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -72,7 +73,12 @@ public class ProfileFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user=snapshot.getValue(User.class);
                 username.setText(user.getUsername());
-                interests.setText(user.getInterests().toString());
+                ArrayList<String> u1=user.getInterests();
+                String s="";
+                for (String x:u1){
+                    s+=x+"\n";
+                }
+                interests.setText(s);
                 if (user.getImageURL().equals("default")){
                     image_profile.setImageResource(R.drawable.avtr);
                 }
