@@ -59,7 +59,7 @@ public class ChatsFragment extends Fragment {
                     if (chat.getSender().equals(fUser.getUid())){
                         usersList.add(chat.getReceiver());
                     }
-                    if (chat.getReceiver().equals(fUser.getUid())){
+                    if (chat.getReceiver().equals(fUser.getUid()) && !usersList.contains(chat.getSender())){
                         usersList.add(chat.getSender());
                     }
                 }
@@ -88,8 +88,9 @@ public class ChatsFragment extends Fragment {
                             if (mUsers.size()!=0){
                                 for (int i=0; i<mUsers.size();i++){
                                     User user1=mUsers.get(i);
-                                    if (!user.getId().equals(user1.getId())){
+                                    if (!user.getId().equals(user1.getId()) && !mUsers.contains(user)){
                                         mUsers.add(user);
+                                        break;
                                     }
                                 }
                             }
